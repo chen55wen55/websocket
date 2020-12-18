@@ -1,26 +1,21 @@
 {
-  "name": "wesocket",
+  "name": "websockets-vanilla",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.x"
+  },
   "description": "",
-  "main": "server.js",
-  "dependencies": {
-    "express": "^4.17.1",
-    "ws": "^7.4.1"
-  },
-  "devDependencies": {},
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://git@github.com/chen55wen55/wesocket.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/chen55wen55/wesocket/issues"
-  },
-  "homepage": "https://github.com/chen55wen55/wesocket#readme"
+  "dependencies": {
+    "bufferutil": "^4.0.1",
+    "express": "^4.17.1",
+    "utf-8-validate": "^5.0.2",
+    "ws": "^7.2.0"
+  }
 }
