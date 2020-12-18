@@ -1,17 +1,37 @@
 <html>
   <head>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>
-      let HOST = location.origin.replace(/^http/, 'ws')
-      let ws = new WebSocket(HOST);
-      let el;
-
-      ws.onmessage = (event) => {
-        el = document.getElementById('server-time');
-        el.innerHTML = 'Server time: ' + event.data;
-      };
+	  var HOST = location.origin.replace(/^http/, 'ws')
+	  var ws = new WebSocket(HOST);
+	  var app = new Vue({
+	    el: '#app',
+	    data: {
+		  message: 'Hello welcome chat!'
+		  chatData: [],
+		  chatessage: ''
+	    },
+		method: {
+			startChat(){
+			  ws.onmessage = (event) => {
+				this.chatData.push(event);
+			  };
+			},
+			push() {
+				ws.send(this.chatessage);
+			}
+		},
+		mounthed: {
+		
+		}
+	  });
     </script>
   </head>
   <body>
+	{{message}}
     <p id="server-time"></p>
+	<label v-for="(value, index) in chatData" :key="index">{{value}}</label>
+	<input type=""text v-model="chatessage"/>
+	<button @click="push"/>push</button>
   </body>
 </html>
