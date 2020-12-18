@@ -5,15 +5,15 @@
 	<div id="app">
 	  {{ message }}
 		<p id="server-time"></p>
-		<label v-for="(value, index) in chatData" :key="index">{{value}}</label>
+		<label v-for="(value, index) in chatData" :key="index">{{value}}<br></label>
 		<input type=""text v-model="chatessage"/>
 		<button v-on:click="push()"/>push</button>
 	</div>
 	</body>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>
-      // var HOST = location.origin.replace(/^http/, 'ws')
-      var ws = new WebSocket('ws://fierce-gorge-50811.herokuapp.com/');
+      let HOST = location.origin.replace(/^http/, 'ws')
+      let ws = new WebSocket(HOST);
 	  var app = new Vue({
 	    el: '#app',
 	    data: {
@@ -24,7 +24,7 @@
 		methods: {
 			setRecived(){
 			  ws.onmessage = (event) => {
-				this.chatData.push(event);
+				this.chatData.push(event.data);
 			  };
 			},
 			push() {
