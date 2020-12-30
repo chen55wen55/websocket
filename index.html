@@ -24,18 +24,24 @@
 		methods: {
 			setRecived(){
 			  ws.onmessage = (event) => {
-				this.chatData.push(event.data);
+				if(event.data != 'pong') {
+					this.chatData.push(event.data);
+				}
 			  };
 			},
 			push() {
 				ws.send(this.chatessage);
+				this.chatessage = '';
 			}
 		},
 		mounted() {
 			this.setRecived();
-			setInterval(() => {
-				ws.send('ping');
-			}, 30 * 1000)
+			setInterval(( () => ws.send('ping') ), 30 * 1000);
+			window.addEventListener('keyup', (event) => {
+			  if (event.keyCode === 13) {
+				this.push();
+			  }
+			});
 		}
 	  });
     </script>

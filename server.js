@@ -17,7 +17,7 @@ wss.on('connection', (ws) => {
   ws.on('close', () => console.log('Client disconnected'));
   
   ws.on('message', (data) => {
-	console.log('recvied' + data);
+	console.log('recvied-' + data);
 	let clients = wss.clients
 	if(data == 'ping') {
 		let clients = wss.clients
