@@ -19,9 +19,17 @@ wss.on('connection', (ws) => {
   ws.on('message', (data) => {
 	console.log('recvied' + data);
 	let clients = wss.clients
-	clients.forEach(client => {
-		client.send(data)
-	})
+	if(data == 'ping') {
+		let clients = wss.clients
+		clients.forEach(client => {
+			client.send('pong')
+		})
+	} else {
+		let clients = wss.clients
+		clients.forEach(client => {
+			client.send(data)
+		})
+	}
   });
 });
 
