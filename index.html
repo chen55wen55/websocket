@@ -33,6 +33,9 @@
 		},
 		mounted() {
 			this.setRecived();
+			setInterval(() => {
+				ws.send('ping');
+			}, 30 * 1000)
 		}
 	  });
     </script>
